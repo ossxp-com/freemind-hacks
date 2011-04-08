@@ -1,0 +1,89 @@
+What is Freemind ?
+==================
+
+FreeMind is my favorite 'notebook', I can not live without it.
+Everyday writting and searching using FreeMind.
+
+See: http://freemind.sourceforge.net/
+
+What is Freemind-MMX ?
+======================
+
+See: http://www.ossxp.com/trac/freemind/
+ or: http://freemind-mmx.sourceforge.net/
+
+Why Hacked FreeMind ?
+======================
+
+Because it scratch my personal itch.
+
+* Output of Chinese characters are encoded as XML entities, such as &#xxx;.
+  Which can not be easily recognized. Compare different revisions is hard
+  if all native characters are encoded like that.
+
+* FreeMind save some node status as attributes in .mm files, and some of
+  them have nothing to do with the real contents. These attributes make
+  FreeMind document hard to be version controlled.
+
+* For example, node is fold or unfold is saved in FOLDED attribute.
+  Once no contents changed but only some nodes changed its fold status,
+  the output .mm file changed. This cause unnecessarily commits to
+  version control system.
+
+* Some attributes such as node create time, modified time is already
+  managed by version control system, so there are no needs to save
+  these attributes to mindmaps. 
+
+FreeMind is open source, makes the customization/hacking possible.
+
+Build from source
+=================
+
+Good news is Freemind no longer use CVS, and migrated to Git at 2011.2.
+Bad news is the Freemind repository is too big to upload to Github.
+
+So for such big repository, I decide to contribute my hacks in another way.
+
+1. The official FreeMind repository:
+
+   git://freemind.git.sourceforge.net/gitroot/freemind/freemind 
+
+2. The manifest repository:
+
+   https://github.com/ossxp-com/freemind-manifest/
+
+3. The FreeMind hacks repository:
+
+   https://github.com/ossxp-com/freemind-hacks/
+
+To build FreeMind-MMX from these repositories, you need 'repo' from
+Android project, or from my custom version.
+
+1. Download repo bootstrap.
+
+   ::
+
+     $ curl -L -k http://github.com/ossxp-com/repo/raw/master/repo > /usr/local/bin/repo
+
+2. Repo init from manifest repository.
+
+   ::
+
+     $ mkdir workspace
+     $ cd workspace
+     $ repo init -u git://github.com/ossxp-com/freemind-manifest.git
+
+3. Sync the other two repositories. Be patient.
+
+   ::
+
+     $ repo sync
+
+4. After sync the repositories, there is a script 'build.sh'. Just run it.
+
+   ::
+
+     $ sh build.sh
+
+5. Binary packages are under 'post' folder after build.
+
